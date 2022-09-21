@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="likes_and_dislikes_node" pkg="ai_integration_01" type="likes_and_dislikes.py" required="true" output="screen">
+    <param name="transrate" type="bool" value="false" />
+  </node>
+    <node name="usb_cam" pkg="usb_cam" type="usb_cam_node">
+    <param name="video_device" value="/dev/video0"/>
+    <param name="image_width" value="640"/>
+    <param name="image_height" value="480"/>
+    <param name="pixel_format" value="yuyv"/>
+    <param name="framerate" value="30"/>
+  </node>
+  <node name="rqt_image_view" pkg="rqt_image_view" type="rqt_image_view" args="/usb_cam/image_raw" required="true" />
+</launch>
